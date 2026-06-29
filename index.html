@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+
+    <link rel="icon" href="./images/todo (1).png" type="image/png">
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>📝 My Todo List</h1>
+
+            <!-- Input Section -->
+
+            <form class="input-section">
+
+                <!-- <label for="todoInput">Task</label> -->
+
+                <input type="text" id="todoInput" placeholder="Enter your task..." autocomplete="off">
+
+                <button id="addBtn" type="submit">
+                    Add Task
+                </button>
+
+                <p class="errorMsg"></p>
+
+            </form>
+
+            <!-- Filter Section -->
+
+            <div class="filter-section">
+
+                <button type="button" id="allBtn">
+                    All
+                </button>
+
+                <button type="button" id="pendingBtn">
+                    Pending
+                </button>
+
+                <button type="button" id="completedBtn">
+                    Completed
+                </button>
+
+            </div>
+
+            <!-- Todo List -->
+
+            <div class="todo-list">
+
+                <!--
+                    JavaScript will create tasks here.
+
+                    Example:
+
+                    <div class="task-item">
+
+                        <p class="task-text">
+                            Learn JavaScript
+                        </p>
+
+                        <div class="task-actions">
+
+                            <button class="complete-btn">
+                                ✓
+                            </button>
+
+                            <button class="edit-btn">
+                                ✏️
+                            </button>
+
+                            <button class="delete-btn">
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                -->
+
+            </div>
+
+            <!-- Footer -->
+
+            <div class="footer">
+
+                <p id="total">
+                    Total : 0
+                </p>
+
+                <p id="completed">
+                    Completed : 0
+                </p>
+
+                <p id="pending">
+                    Pending : 0
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
