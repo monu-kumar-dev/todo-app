@@ -7,14 +7,17 @@ const errorMsg = document.querySelector(".errorMsg");
 function addTodo() {
   if (todoInput.value === "" || todoInput.value.trim() === "") {
     errorMsg.innerText = "Please enter a task";
+    return;
   }
+
+  errorMsg.innerText = "";
 
   const div = document.createElement("div");
   const p = document.createElement("p");
   div.classList.add("task-item");
   p.classList.add("task-text");
 
-  p.innerText = todoInput.value;
+  p.innerText = todoInput.value.trim();
   // div.appendChild(p);
 
   //   Adding button
