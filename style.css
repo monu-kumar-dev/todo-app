@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Background Colors */
+  --background-color: #0f172a;
+  --card-color: #1e293b;
+  /* Primary Colors */
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  /* Text Colors */
+  --text-color: #f8fafc;
+  --secondary-text: #94a3b8;
+  /* Status Colors */
+  --success-color: #22c55e;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  /* Border */
+  --border-color: #334155;
+  /* Radius */
+  --border-radius: 12px;
+  /* Shadow */
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  /* Transition */
+  --transition: all 0.3s ease;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 90%;
+  max-width: 600px;
+  background-color: var(--card-color);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.input-section {
+  margin-top: var(--border-radius);
+}
+
+.input-section button {
+  height: 40px;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  padding: 7px;
+  font-size: 20px;
+  font-weight: bolder;
+  transition: var(--transition);
+  background-color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.input-section input {
+  height: 40px;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  font-size: 20px;
+  transition: var(--transition);
+}
+
+.input-section input:focus {
+  box-shadow: 0px 0px 5px 4px var(--primary-color);
+}
+
+.input-section button:hover {
+  transform: translatey(-2px);
+  cursor: pointer;
+}
+
+.filter-section {
+  margin-top: 10px;
+}
+
+.filter-section button {
+  width: 80px;
+  height: 30px;
+  border-radius: 20px;
+  font-weight: bolder;
+  border: none;
+  background-color: var(--primary-color);
+}
+
+.footer p {
+  margin-top: 10px;
+  font-size: 1.4rem;
+}
+
+.task-text {
+  padding: 10px;
+  box-shadow: var(--box-shadow);
+  margin-top: 8px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.complete-btn,
+.edit-btn,
+.delete-btn {
+  width: 40px;
+  height: 30px;
+  background-color: var(--primary-hover);
+  color: var(--text-color);
+  border: none;
+  margin-left: 5px;
+  margin-top: 20px;
+  transition: var(--transition);
+}
+
+.complete-btn:hover,
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: translateY(-3px);
+}
+
+.task-item {
+  display: flex;
+}
