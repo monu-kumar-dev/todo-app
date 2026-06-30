@@ -24,22 +24,22 @@ function addTodo() {
   const container = document.createElement("div");
   container.classList.add("task-actions");
 
-  const button1 = document.createElement("button");
-  button1.type = "button";
-  button1.classList.add("complete-btn");
-  button1.innerHTML = '<i class="fa-solid fa-check"></i>';
+  const completeBtn = document.createElement("button");
+  completeBtn.type = "button";
+  completeBtn.classList.add("complete-btn");
+  completeBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
 
-  const button2 = document.createElement("button");
-  button2.type = "button";
-  button2.classList.add("edit-btn");
-  button2.innerHTML = '<i class="fa-solid fa-pen"></i>';
+  const editBtn = document.createElement("button");
+  editBtn.type = "button";
+  editBtn.classList.add("edit-btn");
+  editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
 
-  const button3 = document.createElement("button");
-  button3.type = "button";
-  button3.classList.add("delete-btn");
-  button3.innerHTML = '<i class="fa-solid fa-trash"></i>';
+  const deleteBtn = document.createElement("button");
+  deleteBtn.type = "button";
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
 
-  container.append(button1, button2, button3);
+  container.append(completeBtn, editBtn, deleteBtn);
   div.append(p, container);
 
   todoList.appendChild(div);
