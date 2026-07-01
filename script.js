@@ -4,25 +4,28 @@ const todoList = document.querySelector(".todo-list");
 const form = document.querySelector(".input-section");
 const errorMsg = document.querySelector(".errorMsg");
 
+const totalTasks = document.getElementById("total");
+const pendingTasks = document.getElementById("pending");
+const completedTasks = document.getElementById("completed");
+
 function addTodo() {
   if (todoInput.value === "" || todoInput.value.trim() === "") {
     errorMsg.innerText = "Please enter a task";
     return;
   }
 
-  errorMsg.innerText = "";
+  const taskItem = document.createElement("div");
+  const taskText = document.createElement("p");
+  taskItem.classList.add("task-item");
+  taskText.classList.add("task-text");
 
-  const div = document.createElement("div");
-  const p = document.createElement("p");
-  div.classList.add("task-item");
-  p.classList.add("task-text");
+  taskText.innerText = todoInput.value.trim();
 
-  p.innerText = todoInput.value.trim();
-  // div.appendChild(p);
+  // taskItem.appendChild(taskText);
 
   //   Adding button
-  const container = document.createElement("div");
-  container.classList.add("task-actions");
+  const taskActions = document.createElement("div");
+  taskActions.classList.add("task-actions");
 
   const completeBtn = document.createElement("button");
   completeBtn.type = "button";
@@ -39,10 +42,13 @@ function addTodo() {
   deleteBtn.classList.add("delete-btn");
   deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
 
-  container.append(completeBtn, editBtn, deleteBtn);
-  div.append(p, container);
+  taskActions.append(completeBtn, editBtn, deleteBtn);
+  taskItem.append(taskText, taskActions);
 
-  todoList.appendChild(div);
+  todoList.appendChild(taskItem);
+
+  // clear inputBtn
+  todoInput.value = "";
 
   // <div class="task-item">
   //   <p class="task-text">Learn JavaScript</p>
@@ -54,11 +60,46 @@ function addTodo() {
   //     <button class="delete-btn">🗑️</button>
   //   </div>
   // </div>;
+
+  // Handling complete btn
+  completeBtn.addEventListener("click", () => {
+    // div.classList.add("task-completed");
+
+    // if (div.classList.contains("task-completed")) {
+    //   div.classList.remove("task-completed");
+    // } else {
+    //   div.classList.add("task-completed");
+    // }
+
+    // In-short
+    taskItem.classList.toggle("task-completed");
+  });
+
+  // Handling edit btn
+  editBtn.addEventListener("click", () => {
+    todoInput.value = taskText.innerText;
+    todoInput.focus();
+    taskItem.remove();
+  });
+
+  // Handling delete btn
+  deleteBtn.addEventListener("click", () => {
+    // User se confirmation mangne ke liye
+    const isConfirmed = confirm("Are you sure you want to delete this task?");
+
+    // Agar user "OK" click karta hai, to task delete ho jayega
+    if (isConfirmed) {
+      taskItem.remove();
+    }
+  });
 }
+
+todoInput.addEventListener("input", () => {
+  errorMsg.innerText = "";
+});
 
 // addBtn.addEventListener("submit", addTodo);
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   addTodo();
-  todoInput.value = "";
 });
