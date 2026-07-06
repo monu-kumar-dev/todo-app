@@ -4,9 +4,13 @@ const todoList = document.querySelector(".todo-list");
 const form = document.querySelector(".input-section");
 const errorMsg = document.querySelector(".errorMsg");
 
-const totalTasks = document.getElementById("total");
-const pendingTasks = document.getElementById("pending");
-const completedTasks = document.getElementById("completed");
+const totalCount = document.getElementById("total");
+const pendingCount = document.getElementById("pending");
+const completedCount = document.getElementById("completed");
+
+const completedBtn = document.getElementById("completedBtn");
+const pendingBtn = document.getElementById("pendingBtn");
+const allBtn = document.getElementById("allBtn");
 
 function addTodo() {
   if (todoInput.value === "" || todoInput.value.trim() === "") {
@@ -97,18 +101,54 @@ function updateCounters() {
   const completedTaskItems = document.querySelectorAll(".task-completed");
 
   // Calculate counts
-  const totalCount = allTaskItems.length;
-  const completedCount = completedTaskItems.length;
-  const pendingCount = totalCount - completedCount;
+  const totalTasks = allTaskItems.length;
+  const completedTasks = completedTaskItems.length;
+  const pendingTasks = totalTasks - completedTasks;
 
   // Update UI
-  totalTasks.innerText = `Total: ${totalCount}`;
-  completedTasks.innerText = `Completed: ${completedCount}`;
-  pendingTasks.innerText = `Pending: ${pendingCount}`;
+  totalCount.innerText = `Total: ${totalTasks}`;
+  completedCount.innerText = `Completed: ${completedTasks}`;
+  pendingCount.innerText = `Pending: ${pendingTasks}`;
 }
 
 todoInput.addEventListener("input", () => {
   errorMsg.innerText = "";
+});
+
+allBtn.addEventListener("click", () => {
+  const allTaskItems = document.querySelectorAll(".task-item");
+
+  allTaskItems.forEach((task) => {
+    task.style.display = "flex";
+  });
+});
+
+pendingBtn.addEventListener("click", () => {
+  const allTaskItems = document.querySelectorAll(".task-item");
+
+  allTaskItems.forEach((task) => {
+    if (task.classList.contains("task-completed")) {
+      // Hide completed task
+      task.style.display = "none";
+    } else {
+      // show pending task
+      task.style.display = "flex";
+    }
+  });
+});
+
+completedBtn.addEventListener("click", () => {
+  const allTaskItems = document.querySelectorAll(".task-item");
+
+  allTaskItems.forEach((task) => {
+    if (task.classList.contains("task-completed")) {
+      // Show completed task
+      task.style.display = "flex";
+    } else {
+      // Hide pending task
+      task.style.display = "none";
+    }
+  });
 });
 
 // addBtn.addEventListener("submit", addTodo);
