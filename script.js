@@ -8,10 +8,6 @@ const totalTasks = document.getElementById("total");
 const pendingTasks = document.getElementById("pending");
 const completedTasks = document.getElementById("completed");
 
-let totalCount = 0;
-let completedCount = 0;
-let pendingCount = 0;
-
 function addTodo() {
   if (todoInput.value === "" || todoInput.value.trim() === "") {
     errorMsg.innerText = "Please enter a task";
@@ -26,10 +22,6 @@ function addTodo() {
   taskText.innerText = todoInput.value.trim();
 
   // taskItem.appendChild(taskText);
-
-  // Updating totalCount task
-  totalCount += 1;
-  totalTasks.innerHTML = `Total: ${totalCount}`;
 
   //   Adding button
   const taskActions = document.createElement("div");
@@ -55,42 +47,24 @@ function addTodo() {
 
   todoList.appendChild(taskItem);
 
+  updateCounters();
+
   // clear inputBtn
   todoInput.value = "";
-
-  // <div class="task-item">
-  //   <p class="task-text">Learn JavaScript</p>
-  //   <div class="task-actions">
-  //     <button class="complete-btn">✓</button>
-
-  //     <button class="edit-btn">✏️</button>
-
-  //     <button class="delete-btn">🗑️</button>
-  //   </div>
-  // </div>;
 
   // Handling complete btn
   completeBtn.addEventListener("click", () => {
     // taskItem.classList.add("task-completed");
 
-    if (taskItem.classList.contains("task-completed")) {
-      completedCount -= 1;
-      completedTasks.innerHTML = `Completed: ${completedCount}`;
-      taskItem.classList.remove("task-completed");
-    } else {
-      completedCount += 1;
-      completedTasks.innerHTML = `Completed: ${completedCount}`;
-      taskItem.classList.add("task-completed");
-    }
+    // if (taskItem.classList.contains("task-completed")) {
+    //   taskItem.classList.remove("task-completed");
+    // } else {
+    //   taskItem.classList.add("task-completed");
+    // }
 
     // In-short
-    // taskItem.classList.toggle("task-completed");
-    // completedCount += 1;
-    // completedCount.innerHTML = `Completed: ${completedCount}`;
-
-    // handling pending task
-    pendingCount = totalCount - completedCount;
-    pendingTasks.innerText = `Pending: ${pendingCount}`;
+    taskItem.classList.toggle("task-completed");
+    updateCounters();
   });
 
   // Handling edit btn
@@ -98,6 +72,8 @@ function addTodo() {
     todoInput.value = taskText.innerText;
     todoInput.focus();
     taskItem.remove();
+
+    updateCounters();
   });
 
   // Handling delete btn
@@ -108,8 +84,27 @@ function addTodo() {
     // Agar user "OK" click karta hai, to task delete ho jayega
     if (isConfirmed) {
       taskItem.remove();
+      updateCounters();
     }
   });
+}
+
+function updateCounters() {
+  // Get all todo items
+  const allTaskItems = document.querySelectorAll(".task-item");
+
+  // Get completed todo items
+  const completedTaskItems = document.querySelectorAll(".task-completed");
+
+  // Calculate counts
+  const totalCount = allTaskItems.length;
+  const completedCount = completedTaskItems.length;
+  const pendingCount = totalCount - completedCount;
+
+  // Update UI
+  totalTasks.innerText = `Total: ${totalCount}`;
+  completedTasks.innerText = `Completed: ${completedCount}`;
+  pendingTasks.innerText = `Pending: ${pendingCount}`;
 }
 
 todoInput.addEventListener("input", () => {
