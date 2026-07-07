@@ -7,6 +7,7 @@ const errorMsg = document.querySelector(".errorMsg");
 const totalCount = document.getElementById("total");
 const pendingCount = document.getElementById("pending");
 const completedCount = document.getElementById("completed");
+const clearAll = document.getElementById("clearAll");
 
 const completedBtn = document.getElementById("completedBtn");
 const pendingBtn = document.getElementById("pendingBtn");
@@ -240,7 +241,21 @@ completedBtn.addEventListener("click", () => {
   });
 });
 
+clearAll.addEventListener("click", () => {
+  const allTaskItems = document.querySelectorAll(".task-item");
+  if (allTaskItems.length === 0) {
+    alert("First add the todo data.");
+    return;
+  }
 
+  const confirmDelete = confirm("Kya aap saara data delete karna chahte hain?");
+
+  if (confirmDelete) {
+    localStorage.clear();
+    // alert("Saara data clear ho gaya hai!");
+    location.reload(); // Page refresh karne ke liye
+  }
+});
 
 // addBtn.addEventListener("submit", addTodo);
 form.addEventListener("submit", (e) => {
