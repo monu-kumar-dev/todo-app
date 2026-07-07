@@ -64,6 +64,16 @@ function createTodoElement(todo) {
 
     // In-short
     taskItem.classList.toggle("task-completed");
+
+    // finding index
+    const index = todos.findIndex((todo) => {
+      return todo.text === taskText.innerText;
+    });
+
+    // console.log(index);
+
+    todos[index].completed = !todos[index].completed;
+    localStorage.setItem("todoTask", JSON.stringify(todos));
     updateCounters();
   });
 
@@ -71,6 +81,15 @@ function createTodoElement(todo) {
   editBtn.addEventListener("click", () => {
     todoInput.value = taskText.innerText;
     todoInput.focus();
+
+    // find index
+    const index = todos.findIndex((todo) => {
+      return todo.text == taskText.innerText;
+    });
+
+    todos.splice(index, 1);
+    localStorage.setItem("todoTask", JSON.stringify(todos));
+
     taskItem.remove();
 
     updateCounters();
@@ -84,6 +103,18 @@ function createTodoElement(todo) {
     // Agar user "OK" click karta hai, to task delete ho jayega
     if (isConfirmed) {
       taskItem.remove();
+
+      // finding index
+      const index = todos.findIndex((todo) => {
+        return todo.text === taskText.innerText;
+      });
+
+      // console.log(index);
+
+      todos.splice(index, 1);
+
+      localStorage.setItem("todoTask", JSON.stringify(todos));
+
       updateCounters();
     }
   });
