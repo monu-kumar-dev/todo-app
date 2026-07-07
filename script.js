@@ -282,9 +282,10 @@ clearAll.addEventListener("click", () => {
   const confirmDelete = confirm("Kya aap saara data delete karna chahte hain?");
 
   if (confirmDelete) {
-    localStorage.clear();
-    // alert("Saara data clear ho gaya hai!");
-    location.reload(); // Page refresh karne ke liye
+    todos.length = 0;
+    todoList.innerHTML = "";
+    updateCounters();
+    localStorage.removeItem("todoTask");
   }
 });
 
