@@ -66,9 +66,12 @@ function createTodoElement(todo) {
     taskItem.classList.toggle("task-completed");
 
     // finding index
-    const index = todos.findIndex((todo) => {
-      return todo.text === taskText.innerText;
-    });
+    // const index = todos.findIndex((item) => {
+    //   // return item.text === taskText.innerText;
+    //   return item.id == todo.id;
+    // });
+
+    const index = getTodoIndex(todo.id);
 
     // console.log(index);
 
@@ -79,13 +82,16 @@ function createTodoElement(todo) {
 
   // Handling edit btn
   editBtn.addEventListener("click", () => {
-    todoInput.value = taskText.innerText;
+    todoInput.value = todo.text;
     todoInput.focus();
 
     // find index
-    const index = todos.findIndex((todo) => {
-      return todo.text == taskText.innerText;
-    });
+    // const index = todos.findIndex((item) => {
+    //   // return item.text == taskText.innerText;
+    //   return item.id == todo.id;
+    // });
+
+    const index = getTodoIndex(todo.id);
 
     todos.splice(index, 1);
     localStorage.setItem("todoTask", JSON.stringify(todos));
@@ -104,13 +110,14 @@ function createTodoElement(todo) {
     if (isConfirmed) {
       taskItem.remove();
 
-      // finding index
-      const index = todos.findIndex((todo) => {
-        return todo.text === taskText.innerText;
-      });
+      // // finding index
+      // const index = todos.findIndex((item) => {
+      //   // return todo.text === taskText.innerText;
+      //   return item.id == todo.id;
+      // });
 
       // console.log(index);
-
+      const index = getTodoIndex(todo.id);
       todos.splice(index, 1);
 
       localStorage.setItem("todoTask", JSON.stringify(todos));
@@ -120,6 +127,10 @@ function createTodoElement(todo) {
   });
 }
 
+function getTodoIndex(id) {
+  return todos.findIndex((item) => item.id === id);
+}
+
 function addTodo() {
   if (todoInput.value === "" || todoInput.value.trim() === "") {
     errorMsg.innerText = "Please enter a task";
@@ -127,6 +138,7 @@ function addTodo() {
   }
 
   const todo = {
+    id: Date.now(),
     text: todoInput.value.trim(),
     completed: false,
   };
